@@ -1,8 +1,6 @@
 const puppeteer = require ('puppeteer')
 
-/**
- * @jest-environment jsdom
- */
+
 
 describe('Test du site', () => {
     let browser;
@@ -44,9 +42,10 @@ describe('Test du site', () => {
     })
 
     test("Verifier la liste des cd", async () =>{
+        
         await page.goto(url, {waitUntil : 'domcontentloaded'})
 
-        const containersTitle = document.getElementsByTagName('H2')
+        const containersTitle = await page.$('h2');
 
         let wantedTitle;
 
@@ -56,9 +55,7 @@ describe('Test du site', () => {
             }
         }
 
-        if(!wantedTitle){
-            expect().not.ok()
-        }
+        expect(wantedTitle).not.toBeNull()
 
         let listeCds = wantedTitle.nextElementSibling;
 
