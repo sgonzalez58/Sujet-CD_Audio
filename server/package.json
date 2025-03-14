@@ -11,15 +11,16 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@testcontainers/postgresql": "^10.19.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "pg": "^8.14.0",
-    "supertest": "^7.0.0"
+    "pg": "^8.14.0"
   },
   "devDependencies": {
+    "@testcontainers/postgresql": "^10.19.0",
     "jest": "^29.7.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "puppeteer": "^24.4.0",
+    "supertest": "^7.0.0"
   }
 }
