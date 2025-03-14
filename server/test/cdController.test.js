@@ -6,6 +6,8 @@ const express = require("express");
 const cors = require("cors");
 const cdRoutes = require("../Routes/cdRoutes");
 
+const data = require('./MOCK_DATA.json')
+
 // const app = require('../server')
 
 const app = express();
@@ -168,6 +170,17 @@ describe('cdController - Intégration', () => {
 
             expect(response4.status).toEqual(200)
             expect(response4.body).toEqual([])
+        });
+
+        test.each(data)('ajout de cds', async (cd) => {
+            const response = await request(app)
+                .post('/api/cds')
+                .send({title : cd.title, artist : cd.artist, year : cd.year})
+                .set('Content-Type', 'application/json')
+            
+            expect(response.headers['content-type']).toMatch(/json/)
+            expect(response.status).toEqual(201)
+            expect(response.body).toEqual(expect.objectContaining({title : cd.title, artist : cd.artist, year: cd.year}))
         });
 
         test("Doit retourner une erreur", async function() {
